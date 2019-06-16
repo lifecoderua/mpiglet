@@ -8,7 +8,7 @@ import thumbnailRender from "./thumbnail";
  * @param boxes {[Box]} Array of Box to render
  */
 export default function render(boxes) {
-  boxes.forEach((box) => {
+  boxes.forEach(function(box) {
     consoleRender(box);
     thumbnailRender(box);
   })
