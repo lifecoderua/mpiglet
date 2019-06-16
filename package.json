@@ -1,0 +1,24 @@
+{
+  "name": "mpiglet",
+  "version": "0.1.0",
+  "description": "Minimalistic MPEG-4 part 12 reader",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lifecoderua/mpiglet.git"
+  },
+  "keywords": [
+    "mpeg-4",
+    "ISO-base-media",
+    "parser"
+  ],
+  "author": "lifecoderua",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lifecoderua/mpiglet/issues"
+  },
+  "homepage": "https://github.com/lifecoderua/mpiglet#readme"
+}
