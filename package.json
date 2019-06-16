@@ -4,8 +4,8 @@
   "description": "Minimalistic MPEG-4 part 12 reader",
   "main": "src/index.js",
   "scripts": {
-    "start": "npm-run-all -p serve",
-    "serve": "http-server ./dist -c-1 -o",
+    "start": "webpack-dev-server --open",
+    "build": "webpack --config webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -24,7 +24,12 @@
   },
   "homepage": "https://github.com/lifecoderua/mpiglet#readme",
   "devDependencies": {
+    "clean-webpack-plugin": "^3.0.0",
+    "html-webpack-plugin": "^3.2.0",
     "http-server": "^0.11.1",
-    "npm-run-all": "^4.1.5"
+    "npm-run-all": "^4.1.5",
+    "webpack": "^4.34.0",
+    "webpack-cli": "^3.3.4",
+    "webpack-dev-server": "^3.7.1"
   }
 }

@@ -4,6 +4,11 @@ Minimal ISO 14496-12 / MPEG-4 Part 12 parser
 # Goal
 Provide a minimalistic viewer with the ability to display boxes and preview `mdat` contained data.
 
+# Usage
+`npm i` — install dependencies
+`npm start` — run a dev server
+
+# Behavior
 MPiglet produces the following output
 
 - for regular boxes display `Box Type` and `Box Size` in the console
