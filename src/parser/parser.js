@@ -1,8 +1,10 @@
-class Parser {
-  static parse(data) {
+function Parser() {
+  this.parse = (data) => {
     console.log(data);
-    return(data);
-  }
+    return data;
+  };
 }
 
-export default Parser;
+export default new Parser();
+
+
