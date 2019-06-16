@@ -14,7 +14,7 @@ MPiglet produces the following output
 
 - for regular boxes display `Box Type` and `Box Size` in the console
 - for `mdat` boxes display the box content in the console as a UTF8 string
-- for `mdat` containing image library consumer display the image on the HTML page
+- for `mdat` containing image (starting with `data:image`) library consumer display the image on the HTML page
 
 # Assumptions
 MPiglet expects valid MPEG-4 Part 12 files only, please be gentle with the little reader. 
@@ -32,3 +32,12 @@ This means Babel is not used for the bundle, but the Webpack is in place for cod
 # Browser Support
 MPiglet supports latest Chrome, IE 11 and Edge browsers.
 Anything with an idea of modern JS should work just fine unless it does not.
+
+## OhMyIE11
+- arrow functions
+- classes
+- promises
+- default params
+- spread / destructuring
+
+And other fun is not for those who want to stay away from polyfills.

@@ -1,10 +1,31 @@
-function Parser() {
-  this.parse = (data) => {
-    console.log(data);
-    return data;
-  };
-}
+import Box from "./box";
 
-export default new Parser();
+const Parser = {
+  /**
+   * Parse incoming buffer into MPEG-4 Boxes array
+   *
+   * @param fileBuffer {ArrayBuffer}
+   * @returns {[Box]} Box array
+   */
+  parse: function(fileBuffer) {
+    const boxes = [];
+    const fileLength = fileBuffer.byteLength;
+    let cursor = 0;
+
+    while (cursor < fileLength) {
+      const box = new Box(fileBuffer, cursor);
+      boxes.push(box);
+      cursor = box.getNextBoxOffset();
+
+      if (box.EOF === true) {
+        break;
+      }
+    }
+
+    return boxes;
+  },
+};
+
+export default Parser;
 
 
