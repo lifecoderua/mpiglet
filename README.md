@@ -7,6 +7,7 @@ Provide a minimalistic viewer with the ability to display boxes and preview `mda
 # Usage
 `npm i` — install dependencies
 `npm start` — run a dev server
+`npm test` — run tests
 
 # Behavior
 MPiglet produces the following output
@@ -17,6 +18,16 @@ MPiglet produces the following output
 
 # Assumptions
 MPiglet expects valid MPEG-4 Part 12 files only, please be gentle with the little reader. 
+
+# Tech
+- Webpack — JS bundling, period. No assets handling, no transpiling or polyfilling
+- Jest — test runner
+- Webpack-dev-server — for dev-time convenience
+- Babel — allows Jest to use `import`
+
+**Rationale**: one of the purposes was to provide the least code transformation possible while maintaining multiple browser support.
+
+This means Babel is not used for the bundle, but the Webpack is in place for code splitting. 
 
 # Browser Support
 MPiglet supports latest Chrome, IE 11 and Edge browsers.
