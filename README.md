@@ -39,5 +39,6 @@ Anything with an idea of modern JS should work just fine unless it does not.
 - promises
 - default params
 - spread / destructuring
+- TextDecoder
 
 And other fun is not for those who want to stay away from polyfills.
