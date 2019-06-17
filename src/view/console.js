@@ -1,5 +1,3 @@
-import Utils from "../utils/utils";
-
 /**
  *  Render box type to console
  *
@@ -8,11 +6,11 @@ import Utils from "../utils/utils";
  * @param box {Box}
  */
 export default function consoleRender(box) {
-  console.log(box.type);
+  console.log('Found box of type %s and size %d', box.type, box.length);
 
   if (box.type === 'mdat') {
-    const decodedContent = Utils.uintToString( box.getContentsString() );
-    console.log(decodedContent);
+    const decodedContent = box.getContentsString();
+    console.log('Content of mdat box is: %s', decodedContent);
   }
 }
 

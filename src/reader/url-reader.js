@@ -6,16 +6,21 @@ const UrlReader = {
    * @param callback handler function to pass received data to
    */
   read: function(url, callback) {
-    const oReq = new XMLHttpRequest();
-    oReq.open('GET', url, true);
-    oReq.responseType = 'arraybuffer';
+    const req = new XMLHttpRequest();
+    req.open('GET', url, true);
+    req.responseType = 'arraybuffer';
 
-    oReq.onload = function (oEvent) {
-      const arrayBuffer = oReq.response;
+    req.onload = function (event) {
+      if (req.status !== 200) {
+        throw new Error('Media load failed for url ' + url);
+      }
+
+      console.log('Succesfully loaded file %s', url);
+      const arrayBuffer = req.response;
       callback(arrayBuffer);
     };
 
-    oReq.send();
+    req.send();
   }
 };
 
