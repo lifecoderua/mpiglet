@@ -40,5 +40,6 @@ Anything with an idea of modern JS should work just fine unless it does not.
 - default params
 - spread / destructuring
 - TextDecoder
+- Array#includes
 
 And other fun is not for those who want to stay away from polyfills.

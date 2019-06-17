@@ -1,10 +1,9 @@
 import Box from "../src/parser/box";
 
 const TYPES = {
-  //moov: [0x6d, 0x6f, 0x6f, 0x76],
   moov: 0x6D6F6F76,
-  moof: [0x6d, 0x6f, 0x6f, 0x66],
-  mdat: [0x6d, 0x64, 0x61, 0x74],
+  moof: 0x6D6F6F66,
+  mdat: 0x6D646174,
 };
 
 describe('Box', () => {
@@ -63,16 +62,35 @@ describe('Box', () => {
       expect(box.type).toBe('moov');
     });
 
-    test.skip('should return next box offset for node box', () => {
+    test('should return next box offset for node box', () => {
+      const fileBuffer = new ArrayBuffer(32);
+      const view = new DataView(fileBuffer);
+      view.setUint32(0, 16);
+      view.setUint32(4, TYPES.mdat);
 
+      const box = new Box(fileBuffer, 0);
+      expect(box.getNextBoxOffset()).toBe(16);
     });
 
-    test.skip('should return inner box offset for container box', () => {
+    test('should return inner box offset for container box', () => {
+      const fileBuffer = new ArrayBuffer(32);
+      const view = new DataView(fileBuffer);
+      view.setUint32(0, 16);
+      view.setUint32(4, TYPES.moof);
 
+      const box = new Box(fileBuffer, 0);
+      expect(box.getNextBoxOffset()).toBe(8);
     });
 
-    test.skip('should return box contents', () => {
+    test('should return box contents', () => {
+      const fileBuffer = new ArrayBuffer(12);
+      const view = new DataView(fileBuffer);
+      view.setUint32(0, 12);
+      view.setUint32(4, TYPES.mdat);
+      view.setUint32(8, 0x79617921);
 
+      const box = new Box(fileBuffer, 0);
+      expect(box.getContentsString()).toBe('yay!');
     });
 
     test.skip('should read extended type - skip | not interested', () => {});
