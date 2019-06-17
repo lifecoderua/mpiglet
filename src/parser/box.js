@@ -60,7 +60,7 @@ Box.prototype.getContentsString = function() {
 
 Box.prototype.getNextBoxOffset = function() {
   if (CONTAINER_BOX_TYPES.indexOf(this.type) !== -1) {
-    return this.contentOffset;
+    return this.offset + this.contentOffset;
   }
 
   return this.offset + this.length;

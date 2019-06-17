@@ -41,7 +41,7 @@ describe('Box', () => {
       expect(box.length).toBe(32);
     });
 
-    test('should return length up-to-the-end boxes | shifted', () => {
+    test('should return length up-to-the-end boxes | with initial offset', () => {
       const fileBuffer = new ArrayBuffer(32);
       const view = new DataView(fileBuffer);
       view.setUint32(8, 0);
@@ -80,6 +80,16 @@ describe('Box', () => {
 
       const box = new Box(fileBuffer, 0);
       expect(box.getNextBoxOffset()).toBe(8);
+    });
+
+    test('should return inner box offset for container box | with initial offset', () => {
+      const fileBuffer = new ArrayBuffer(32);
+      const view = new DataView(fileBuffer);
+      view.setUint32(12, 16);
+      view.setUint32(12+4, TYPES.moof);
+
+      const box = new Box(fileBuffer, 12);
+      expect(box.getNextBoxOffset()).toBe(20);
     });
 
     test('should return box contents', () => {
