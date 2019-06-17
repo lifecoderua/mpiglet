@@ -1,15 +1,51 @@
+/**
+ * Read MPEG-4 Box by offset
+ *
+ * @param buffer
+ * @param offset
+ * @constructor
+ */
+import Utils from "../utils/utils";
+
+const TYPE_OFFSET = 4;
+const EXTENDED_LENGTH_OFFSET = 8;
+const FIELD_LENGTH = 4;
+const EXTENDED_FIELD_LENGTH = 8;
+
+
 function Box(buffer, offset) {
   this.buffer = buffer;
   this.offset = offset;
 
+  const view = new DataView(buffer, offset);
   // TODO: read from buffer
-  // this.length = length;
-  // this.type = type;
-  // this.nextBoxOffset
+  this.length = getLength(view);
+  this.type = getType(view);
+  this.nextBoxOffset = getNextBoxOffset(view);
 }
 
 Box.prototype.getContents = function() {
 
 };
+
+function getLength(view) {
+  let length = view.getUint32(0);
+
+  return length;
+}
+
+function getType(view) {
+  const typeCode = getBytes(view.buffer, view.byteOffset + TYPE_OFFSET, FIELD_LENGTH);
+
+  return Utils.uintToString(typeCode);
+}
+
+function getNextBoxOffset(view) {
+
+}
+
+function getBytes(buffer, offset, length) {
+  return new Uint8Array(buffer.slice(offset, offset + length))
+}
 
 export default Box;
