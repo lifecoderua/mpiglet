@@ -53,7 +53,7 @@ function Box(buffer, offset) {
 }
 
 Box.prototype.getContentsString = function() {
-  const contents = getBytes(this.view.buffer, this.contentOffset, this.length - this.contentOffset);
+  const contents = getBytes(this.view.buffer, this.offset + this.contentOffset, this.length - this.contentOffset);
 
   return Utils.uintToString(contents);
 };

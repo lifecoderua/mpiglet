@@ -103,6 +103,17 @@ describe('Box', () => {
       expect(box.getContentsString()).toBe('yay!');
     });
 
+    test('should return box contents | with initial offset', () => {
+      const fileBuffer = new ArrayBuffer(16);
+      const view = new DataView(fileBuffer);
+      view.setUint32(4, 12);
+      view.setUint32(8, TYPES.mdat);
+      view.setUint32(12, 0x79617921);
+
+      const box = new Box(fileBuffer, 4);
+      expect(box.getContentsString()).toBe('yay!');
+    });
+
     test.skip('should read extended type - skip | not interested', () => {});
   });
 });
