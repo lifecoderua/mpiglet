@@ -14,6 +14,8 @@ const UrlReader = {
       const arrayBuffer = oReq.response;
       callback(arrayBuffer);
     };
+
+    oReq.send();
   }
 };
 

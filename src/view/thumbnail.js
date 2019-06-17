@@ -1,3 +1,5 @@
+import Utils from "../utils/utils";
+
 /**
  * Render thumbnail for mdat Box with inline image
  *
@@ -6,7 +8,7 @@
 export default function thumbnailRender(box) {
   if (box.type !== 'mdat') { return false; }
 
-  const contents = box.getContents();
+  const contents = box.getContentsString();
   const isImage = Utils.isImage(contents);
   if (!isImage) { return false; }
 

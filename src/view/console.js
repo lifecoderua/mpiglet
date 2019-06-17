@@ -1,3 +1,5 @@
+import Utils from "../utils/utils";
+
 /**
  *  Render box type to console
  *
@@ -9,7 +11,7 @@ export default function consoleRender(box) {
   console.log(box.type);
 
   if (box.type === 'mdat') {
-    const decodedContent = Utils.uintToString( box.getContent() );
+    const decodedContent = Utils.uintToString( box.getContentsString() );
     console.log(decodedContent);
   }
 }
