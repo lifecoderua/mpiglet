@@ -16,10 +16,6 @@ const Parser = {
       const box = new Box(fileBuffer, cursor);
       boxes.push(box);
       cursor = box.getNextBoxOffset();
-
-      if (box.EOF === true) {
-        break;
-      }
     }
 
     return boxes;
