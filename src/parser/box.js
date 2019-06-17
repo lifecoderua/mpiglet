@@ -18,8 +18,10 @@ function Box(buffer, offset) {
   this.offset = offset;
 
   const view = new DataView(buffer, offset);
-  // TODO: read from buffer
-  this.length = getLength(view);
+
+  const lengthData = getLength(view);
+  this.length = lengthData.length;
+  this.contentOffset = lengthData.contentOffset;
   this.type = getType(view);
   this.nextBoxOffset = getNextBoxOffset(view);
 }
@@ -29,9 +31,25 @@ Box.prototype.getContents = function() {
 };
 
 function getLength(view) {
+  let contentOffset = 8;
   let length = view.getUint32(0);
 
-  return length;
+  // extended size
+  if (length === 1) {
+    contentOffset = 16;
+    // TODO: Uint64 have limited support. Implementing it within zero polyfills concept is impractical.
+    throw new Error('Extended size encountered but is not supported');
+  }
+
+  // up to EOF
+  if (length === 0) {
+    length = view.buffer.byteLength - view.byteOffset;
+  }
+
+  return {
+    length: length,
+    contentOffset: contentOffset,
+  };
 }
 
 function getType(view) {
