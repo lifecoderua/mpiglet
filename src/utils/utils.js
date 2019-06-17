@@ -40,7 +40,15 @@ const Utils = {
     }
 
     return out;
-  }
+  },
+
+  isImage: function() {
+
+  },
+
+  appendImage: function() {
+
+  },
 };
 
 export default Utils;

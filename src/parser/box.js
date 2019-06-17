@@ -5,13 +5,10 @@ function Box(buffer, offset) {
   // TODO: read from buffer
   // this.length = length;
   // this.type = type;
+  // this.nextBoxOffset
 }
 
-Box.prototype.getNextBoxOffset = function() {
-
-};
-
-Box.prototype.getContent = function() {
+Box.prototype.getContents = function() {
 
 };
 
