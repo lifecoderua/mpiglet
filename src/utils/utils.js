@@ -42,12 +42,37 @@ const Utils = {
     return out;
   },
 
-  isImage: function() {
 
+  getImages: function(xmlPayload) {
+    const images = [];
+
+    const parser = new DOMParser();
+    const DOM = parser.parseFromString(xmlPayload, "text/xml");
+    const isInvalidXML = DOM.getElementsByTagName('parsererror').length;
+
+    if (isInvalidXML) { return []; }
+
+
+    const imageElements = DOM.getElementsByTagName('smpte:image');
+
+    for (const elem of imageElements) {
+      const encoding = elem.getAttribute('encoding');
+      const type = elem.getAttribute('imagetype');
+
+      if (encoding === 'Base64') {
+        images.push('data:image/' + type + ';base64, ' + elem.innerHTML.trim());
+      }
+    }
+
+    return images;
   },
 
-  appendImage: function() {
-
+  appendImages: function(imageSources) {
+    imageSources.forEach((source) => {
+      const image = new Image();
+      image.src = source;
+      document.body.appendChild(image);
+    })
   },
 };
 

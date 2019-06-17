@@ -9,9 +9,9 @@ export default function thumbnailRender(box) {
   if (box.type !== 'mdat') { return false; }
 
   const contents = box.getContentsString();
-  const isImage = Utils.isImage(contents);
-  if (!isImage) { return false; }
+  const images = Utils.getImages(contents);
+  if (!images) { return false; }
 
-  Utils.appendImage(contents);
+  Utils.appendImages(images);
 }
 
