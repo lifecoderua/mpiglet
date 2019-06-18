@@ -23,22 +23,26 @@ const CONTAINER_BOX_TYPES = [
   'minf',
   'dinf',
   'stbl',
-  'stsd',
   'sinf',
   'mfra',
   'udta',
   'meta',
   'schi',
-  'avc1',
-  'avc3',
-  'hvc1',
-  'hev1',
-  'mp4a',
-  'encv',
-  'enca',
   'skip',
   'edts',
 ];
+
+// Content-enabled containers, treat as regular boxes for now
+// const DATA_CONTAINER_BOX_TYPES = [
+//   'stsd',
+//   'avc1',
+//   'avc3',
+//   'hvc1',
+//   'hev1',
+//   'mp4a',
+//   'encv',
+//   'enca',
+// ];
 
 function Box(buffer, offset) {
   this.buffer = buffer;
