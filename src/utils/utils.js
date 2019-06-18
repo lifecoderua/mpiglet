@@ -47,7 +47,13 @@ const Utils = {
     const images = [];
 
     const parser = new DOMParser();
-    const DOM = parser.parseFromString(xmlPayload, "text/xml");
+    let DOM;
+    try {
+      DOM = parser.parseFromString(xmlPayload, "text/xml");
+    } catch(err) {
+      console.log('Error while parsing XML', err);
+      return [];
+    }
     const isInvalidXML = DOM.getElementsByTagName('parsererror').length;
 
     if (isInvalidXML) { return []; }
