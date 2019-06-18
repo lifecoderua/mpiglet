@@ -52,15 +52,18 @@ const Utils = {
 
     if (isInvalidXML) { return []; }
 
+    const imageElements = DOM.getElementsByTagNameNS 
+      ? DOM.getElementsByTagNameNS('http://www.smpte-ra.org/schemas/2052-1/2010/smpte-tt','image')
+      : DOM.getElementsByTagName('smpte:image');
 
-    const imageElements = DOM.getElementsByTagName('smpte:image');
-
-    for (const elem of imageElements) {
+    // for (const elem of imageElements) {
+    for (let i = 0; i<imageElements.length; i++) {
+      const elem = imageElements[i];
       const encoding = elem.getAttribute('encoding');
       const type = elem.getAttribute('imagetype');
 
       if (encoding === 'Base64') {
-        images.push('data:image/' + type + ';base64, ' + elem.innerHTML.trim());
+        images.push('data:image/' + type + ';base64, ' + elem.textContent.trim());
       }
     }
 
@@ -68,7 +71,7 @@ const Utils = {
   },
 
   appendImages: function(imageSources) {
-    imageSources.forEach((source) => {
+    imageSources.forEach(function(source) {
       const image = new Image();
       image.src = source;
       document.body.appendChild(image);
