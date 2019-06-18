@@ -42,7 +42,12 @@ const Utils = {
     return out;
   },
 
-
+  /**
+   * Retrieve Base64 images from an XML document
+   *
+   * @param xmlPayload XML document to parse
+   * @returns {Array} array of Base64 encoded images ready for insertion as Img source
+   */
   getImages: function(xmlPayload) {
     const images = [];
 
@@ -62,7 +67,6 @@ const Utils = {
       ? DOM.getElementsByTagNameNS('http://www.smpte-ra.org/schemas/2052-1/2010/smpte-tt','image')
       : DOM.getElementsByTagName('smpte:image');
 
-    // for (const elem of imageElements) {
     for (let i = 0; i<imageElements.length; i++) {
       const elem = imageElements[i];
       const encoding = elem.getAttribute('encoding');
@@ -76,6 +80,11 @@ const Utils = {
     return images;
   },
 
+  /**
+   * Append an image preview to the HTML document
+   *
+   * @param imageSources {[String]} array of IMG sources to append
+   */
   appendImages: function(imageSources) {
     imageSources.forEach(function(source) {
       const image = new Image();

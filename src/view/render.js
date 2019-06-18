@@ -1,7 +1,6 @@
 import consoleRender from "./console";
 import thumbnailRender from "./thumbnail";
 
-
 /**
  * Render all Box content using defined render methods
  *
